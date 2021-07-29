@@ -1,56 +1,69 @@
-# PayPal
+# Deprecation Notice:
+This SDK is deprecated. You can continue to use it, but no new features or support requests will be accepted.
+For alternatives, please visit [the current SDK homepage on the PayPal Developer Portal](https://developer.paypal.com/docs/api/rest-sdks/)
 
-* I)   Install notes
-* II)  Configure your PayPal account
-* III) Module options payments
+## REST API SDK for PHP
 
-## I)  Installation
+![Home Image](https://raw.githubusercontent.com/wiki/paypal/PayPal-PHP-SDK/images/homepage.jpg)
 
-### Composer
+[![Build Status](https://travis-ci.org/paypal/PayPal-PHP-SDK.svg?branch=master)](https://travis-ci.org/paypal/PayPal-PHP-SDK)
+[![Coverage Status](https://coveralls.io/repos/paypal/PayPal-PHP-SDK/badge.svg?branch=master)](https://coveralls.io/r/paypal/PayPal-PHP-SDK?branch=master)
 
-> **WARNING** : A console access is required to update dependencies. If you don't have a console access, please get the latest 2.x version of the module here : https://github.com/thelia-modules/Paypal/tree/2.x
+__Welcome to PayPal PHP SDK__. This repository contains PayPal's PHP SDK and samples for REST API.
 
-To install the module with Composer, open a console, navigate to the Thelia diorectory and type the following command to add the dependency to Thelia composer.json file.
+## Direct Credit Card Support
+> **Important: The PayPal REST API no longer supports new direct credit card integrations.**  Please instead consider [Braintree Direct](https://www.braintreepayments.com/products/braintree-direct); which is, PayPal's preferred integration solution for accepting direct credit card payments in your mobile app or website. Braintree, a PayPal service, is the easiest way to accept credit cards, PayPal, and many other payment methods.
 
-```
-composer require thelia/paypal-module:~4.0.0
-```
+## Please Note
 
-## II) Configure your PayPal account
+> **The Payment Card Industry (PCI) Council has [mandated](https://blog.pcisecuritystandards.org/migrating-from-ssl-and-early-tls) that early versions of TLS be retired from service.  All organizations that handle credit card information are required to comply with this standard. As part of this obligation, PayPal is updating its services to require TLS 1.2 for all HTTPS connections. At this time, PayPal will also require HTTP/1.1 for all connections. [Click here](https://github.com/paypal/tls-update) for more information**
 
-- Log In on [developer.paypal.com] (https://developer.paypal.com "developer.paypal.com")
-- Create REST API apps [here] (https://developer.paypal.com/developer/applications/ "here")
-- Click on Create App
-- Fill the fields : App Name & Sandbox developer account
-- Click on Create App
-- Note the Client ID to use it later in the module configuration
-- Note the Client SECRET to use it later in the module configuration
+> **Connections to the sandbox environment use only TLS 1.2.**
 
-#### In SANDBOX WEBHOOKS
-- To fill this part, go to your module configuration page to see the urls to implement
+## SDK Documentation
 
-#### In SANDBOX APP SETTINGS
-- To fill this part, go to your module configuration page to see the urls to implement
+[Our PayPal-PHP-SDK Page](http://paypal.github.io/PayPal-PHP-SDK/) includes all the documentation related to PHP SDK. Everything from SDK Wiki, to Sample Codes, to Releases. Here are few quick links to get you there faster.
+
+* [PayPal-PHP-SDK Home Page](https://paypal.github.io/PayPal-PHP-SDK/)
+* [Wiki](https://github.com/paypal/PayPal-PHP-SDK/wiki)
+* [Samples](https://paypal.github.io/PayPal-PHP-SDK/sample/)
+* [Installation](https://github.com/paypal/PayPal-PHP-SDK/wiki/Installation)
+* [Make your First SDK Call](https://github.com/paypal/PayPal-PHP-SDK/wiki/Making-First-Call)
+* [PayPal Developer Docs](https://developer.paypal.com/docs/)
+
+## Latest Updates
+
+- SDK now allows injecting your logger implementation. Please read [documentation](https://github.com/paypal/PayPal-PHP-SDK/wiki/Custom-Logger) for more details.
+- If you are running into SSL Connect Error talking to sandbox or live, please update your SDK to latest version or, follow instructions as shown [here](https://github.com/paypal/PayPal-PHP-SDK/issues/474)
+- Checkout the latest 1.0.0 release. Here are all the [breaking Changes in v1.0.0](https://github.com/paypal/PayPal-PHP-SDK/wiki/Breaking-Changes---1.0.0) if you are migrating from older versions.
+- Now we have a [Github Page](https://paypal.github.io/PayPal-PHP-SDK/), that helps you find all helpful resources building applications using PayPal-PHP-SDK.
+
+## PayPal Checkout v2
+Please note that if you are integrating with PayPal Checkout, this SDK and corresponding API [v1/payments](https://developer.paypal.com/docs/api/payments/v1/) are in the process of being deprecated.
+
+We recommend that you integrate with API [v2/checkout/orders](https://developer.paypal.com/docs/api/orders/v2/) and [v2/payments](https://developer.paypal.com/docs/api/payments/v2/). Please refer to the [Checkout PHP SDK](https://github.com/paypal/Checkout-PHP-SDK) to continue with the integration.
+
+## 2.0 Release Candidate!
+We're releasing a [brand new version of our SDK!](https://github.com/paypal/PayPal-php-SDK/tree/2.0-beta) 2.0 is currently at release candidate status, and represents a full refactor, with the goal of making all of our APIs extremely easy to use. 2.0 includes all of the existing APIs (except payouts), and includes the new Orders API (Disputes and Marketplace coming soon). Check out the [FAQ and migration guide](https://github.com/paypal/PayPal-php-SDK/tree/2.0-beta/docs), and let us know if you have any suggestions or issues!
+
+## Prerequisites
+
+   - PHP 5.3 or above
+   - [curl](https://secure.php.net/manual/en/book.curl.php), [json](https://secure.php.net/manual/en/book.json.php) & [openssl](https://secure.php.net/manual/en/book.openssl.php) extensions must be enabled
 
 
-## III) Module options payments
+## License
 
-#### Classic PayPal payment
-![alt classic paypal payment](https://github.com/thelia-modules/Paypal/blob/master/images/payment_classic.png?raw=true)
-- This method will redirect to the PayPal platform to proceed payment
+Read [License](LICENSE) for more licensing information.
 
-#### InContext Classic PayPal payment
-![alt classic paypal payment](https://github.com/thelia-modules/Paypal/blob/master/images/payment_classic_incontext.png?raw=true)
-- This method will allow the customer to pay from a PayPal inContext popup directly from your website (no redirection to the PayPal plateform)
+## Contributing
 
-#### Credit card
-![alt classic paypal payment](https://github.com/thelia-modules/Paypal/blob/master/images/payment_credit_card.png?raw=true)
-- This method allow the customer to pay directly by a credit card without a PayPal account. 'The merchant must have a Pro PayPal account UK and the website must be in HTTPS'
+Read [here](CONTRIBUTING.md) for more information.
 
-#### Recursive payment
-![alt classic paypal payment](https://github.com/thelia-modules/Paypal/blob/master/images/payment_recursive.png?raw=true)
-- This method use the 'PayPal AGRREMENTS' and allow you to use recursive payments on your website. If you want to log all PayPal actions, you need to configure the PayPal webhooks and to have a wabsite in HTTPS
-
-#### Express checkout
-![alt classic paypal payment](https://github.com/thelia-modules/Paypal/blob/master/images/payment_express_checkout.png?raw=true)
-- This method allow the customer to proceed the payment directly from the cart from a PayPal inContext popup.
+## More help
+   * [Going Live](https://github.com/paypal/PayPal-PHP-SDK/wiki/Going-Live)
+   * [PayPal-PHP-SDK Home Page](http://paypal.github.io/PayPal-PHP-SDK/)
+   * [SDK Documentation](https://github.com/paypal/PayPal-PHP-SDK/wiki)
+   * [Sample Source Code](http://paypal.github.io/PayPal-PHP-SDK/sample/)
+   * [API Reference](https://developer.paypal.com/docs/api/)
+   * [Reporting Issues / Feature Requests](https://github.com/paypal/PayPal-PHP-SDK/issues)
